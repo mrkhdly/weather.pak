@@ -43,8 +43,8 @@ jobs:
           cp launch.sh pak.json staging/weather.pak/
           cp -r bin staging/weather.pak/
 
-          cd staging
-          zip -r ../dist/weather.pak weather.pak/
+          cd staging/weather.pak
+          zip -r ../../dist/weather.pak .
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
