@@ -110,7 +110,7 @@ do_fetch() {
     UV=$(echo "$RAW"        | cut -d'|' -f6 | xargs)
 
     # Build the final sentence & save it
-    MSG="$LOCATION is currently $CONDITION. It is $TEMP but feels like $FEELS with $WIND winds, $HUMIDITY humidity, & a UV index of $UV."
+    MSG="$LOCATION is currently $CONDITION. It is $TEMP but feels like $FEELS with$WIND winds, $HUMIDITY humidity, & a UV index of $UV."
     printf '%s' "$MSG" > "$WEATHER_CACHE"
 
     # Delete the temporary file

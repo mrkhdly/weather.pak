@@ -2,7 +2,7 @@
   "label": "Weather",
   "description": "Current weather for any city via wttr.in. Requires WiFi.",
   "author": "mrkhdly",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": "https://github.com/mrkhdly/weather.pak",
   "platforms": ["tg5040"]
 }
