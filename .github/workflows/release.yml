@@ -1,0 +1,53 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Read pinned bin versions
+        id: versions
+        run: |
+          PRESENTER_VERSION=$(jq -r '.["minui-presenter"]' bin-versions.json)
+          KEYBOARD_VERSION=$(jq -r '.["minui-keyboard"]' bin-versions.json)
+          echo "presenter=$PRESENTER_VERSION" >> $GITHUB_OUTPUT
+          echo "keyboard=$KEYBOARD_VERSION"   >> $GITHUB_OUTPUT
+
+      - name: Download binaries
+        run: |
+          mkdir -p bin/tg5040
+
+          curl -L -o bin/tg5040/minui-presenter-tg5040 \
+            "https://github.com/josegonzalez/minui-presenter/releases/download/${{ steps.versions.outputs.presenter }}/minui-presenter-tg5040"
+
+          curl -L -o bin/tg5040/minui-keyboard-tg5040 \
+            "https://github.com/josegonzalez/minui-keyboard/releases/download/${{ steps.versions.outputs.keyboard }}/minui-keyboard-tg5040"
+
+          chmod +x bin/tg5040/minui-presenter-tg5040
+          chmod +x bin/tg5040/minui-keyboard-tg5040
+
+      - name: Package weather.pak
+        run: |
+          mkdir -p staging/weather.pak dist
+
+          cp launch.sh pak.json README.md staging/weather.pak/
+          cp -r bin staging/weather.pak/
+
+          cd staging
+          zip -r ../dist/weather.pak weather.pak/
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/weather.pak
+          generate_release_notes: true
