@@ -27,10 +27,10 @@ jobs:
         run: |
           mkdir -p bin/tg5040
 
-          curl -L -o bin/tg5040/minui-presenter-tg5040 \
+          curl -fL -o bin/tg5040/minui-presenter-tg5040 \
             "https://github.com/josegonzalez/minui-presenter/releases/download/${{ steps.versions.outputs.presenter }}/minui-presenter-tg5040"
 
-          curl -L -o bin/tg5040/minui-keyboard-tg5040 \
+          curl -fL -o bin/tg5040/minui-keyboard-tg5040 \
             "https://github.com/josegonzalez/minui-keyboard/releases/download/${{ steps.versions.outputs.keyboard }}/minui-keyboard-tg5040"
 
           chmod +x bin/tg5040/minui-presenter-tg5040
