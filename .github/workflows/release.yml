@@ -36,18 +36,29 @@ jobs:
           chmod +x bin/tg5040/minui-presenter-tg5040
           chmod +x bin/tg5040/minui-keyboard-tg5040
 
+      - name: Verify downloads
+        run: |
+          echo "--- bin/tg5040 contents ---"
+          ls -lah bin/tg5040/
+          file bin/tg5040/minui-presenter-tg5040
+          file bin/tg5040/minui-keyboard-tg5040
+
       - name: Package weather.pak
         run: |
-          mkdir -p staging/weather.pak dist
+          mkdir -p staging/weather.pak/bin/tg5040 dist
 
           cp launch.sh pak.json staging/weather.pak/
-          cp -r bin staging/weather.pak/
+          cp bin/tg5040/minui-presenter-tg5040 staging/weather.pak/bin/tg5040/
+          cp bin/tg5040/minui-keyboard-tg5040  staging/weather.pak/bin/tg5040/
 
-          cd staging/weather.pak
-          zip -r ../../dist/weather.pak .
+          cd staging
+          zip -r ../dist/weather.pak.zip weather.pak/
+
+          echo "--- zip contents ---"
+          unzip -l ../dist/weather.pak.zip
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v2
         with:
-          files: dist/weather.pak
+          files: dist/weather.pak.zip
           generate_release_notes: true
