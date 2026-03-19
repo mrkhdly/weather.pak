@@ -40,7 +40,7 @@ jobs:
         run: |
           mkdir -p staging/weather.pak dist
 
-          cp launch.sh pak.json README.md staging/weather.pak/
+          cp launch.sh pak.json staging/weather.pak/
           cp -r bin staging/weather.pak/
 
           cd staging
