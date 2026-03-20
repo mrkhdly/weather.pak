@@ -102,7 +102,10 @@ do_fetch() {
     # Change spaces to plus signs for the web address
     loc_enc=$(echo "$LOCATION" | sed 's/ /+/g')
 
-    $PRESENTER --message "Fetching weather for $LOCATION." --timeout 2
+    $PRESENTER --message "Fetching weather for $LOCATION." \
+    --message-alignment bottom \
+    --timeout 2 \
+    --show-time-left
 
     # &u = USCS units (Fahrenheit, mph). URL stored in a variable so & stays unencoded
     # (unencoded & = new query parameter; %26 would make wttr.in treat it as part of the format string)
