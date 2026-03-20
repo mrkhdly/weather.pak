@@ -46,6 +46,29 @@ write_setting() {
     echo "$2" > "$HOME/$1"
 }
 
+# ─── Background color ─────────────────────────────────────────────────────────
+# Map the normalized wttr.in condition name to a background color.
+# The full list of possible %C values comes from WEATHER_SYMBOL in
+# https://github.com/chubin/wttr.in/blob/master/lib/constants.py
+get_bg_color() {
+    case "$1" in
+        Sunny)                                                  echo "#2e6399" ;;
+        PartlyCloudy)                                           echo "#36495c" ;;
+        Cloudy)                                                 echo "#44484d" ;;
+        VeryCloudy)                                             echo "#2c3036" ;;
+        Fog)                                                    echo "#50555c" ;;
+        LightShowers)                                           echo "#2c3e50" ;;
+        HeavyShowers)                                           echo "#1a252f" ;;
+        LightRain)                                              echo "#2c3e50" ;;
+        HeavyRain)                                              echo "#1a252f" ;;
+        LightSleet|LightSleetShowers)                           echo "#405163" ;;
+        LightSnow|LightSnowShowers)                             echo "#405163" ;;
+        HeavySnow|HeavySnowShowers)                             echo "#2b3a4a" ;;
+        ThunderyShowers|ThunderyHeavyRain|ThunderySnowShowers)  echo "#2c2847" ;;
+        *)                                                      echo "#000000" ;;
+    esac
+}
+
 # ─── Location prompt ──────────────────────────────────────────────────────────
 # Ask the user for their city
 prompt_location() {
@@ -72,6 +95,7 @@ fi
 
 # ─── Fetch ────────────────────────────────────────────────────────────────────
 WEATHER_CACHE="$HOME/weather_cache.txt"
+CONDITION_CACHE="$HOME/condition_cache.txt"
 
 # Get the weather from the internet
 do_fetch() {
@@ -111,7 +135,8 @@ do_fetch() {
 
     # Build the final sentence & save it
     MSG="$LOCATION is currently $CONDITION. It is $TEMP but feels like $FEELS with$WIND winds, $HUMIDITY humidity, & a UV index of $UV."
-    printf '%s' "$MSG" > "$WEATHER_CACHE"
+    printf '%s' "$MSG"       > "$WEATHER_CACHE"
+    printf '%s' "$CONDITION" > "$CONDITION_CACHE"
 
     # Delete the temporary file
     rm -f "$WEATHER_CACHE.tmp"
@@ -147,8 +172,12 @@ fi
 # ─── Display loop ─────────────────────────────────────────────────────────────
 # Keep showing the weather until the user quits
 while true; do
+    BG_COLOR=$(get_bg_color "$(cat "$CONDITION_CACHE" 2>/dev/null)")
+
     $PRESENTER \
         --message "$(cat "$WEATHER_CACHE")" \
+        --background-color "$BG_COLOR" \
+        --show-pill \
         --confirm-button A --confirm-text "REFRESH"  --confirm-show \
         --action-button  X --action-text  "LOCATION" --action-show \
         --cancel-button  B --cancel-text  "QUIT"     --cancel-show
