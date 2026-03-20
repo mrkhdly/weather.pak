@@ -79,20 +79,20 @@ write_setting() {
 # https://github.com/chubin/wttr.in/blob/master/lib/constants.py
 get_bg_color() {
     case "$1" in
-        Sunny)                                                  echo "#2e6399" ;;
-        PartlyCloudy)                                           echo "#36495c" ;;
-        Cloudy)                                                 echo "#44484d" ;;
-        VeryCloudy)                                             echo "#2c3036" ;;
-        Fog)                                                    echo "#50555c" ;;
-        LightShowers)                                           echo "#2c3e50" ;;
-        HeavyShowers)                                           echo "#1a252f" ;;
-        LightRain)                                              echo "#2c3e50" ;;
-        HeavyRain)                                              echo "#1a252f" ;;
-        LightSleet|LightSleetShowers)                           echo "#405163" ;;
-        LightSnow|LightSnowShowers)                             echo "#405163" ;;
-        HeavySnow|HeavySnowShowers)                             echo "#2b3a4a" ;;
-        ThunderyShowers|ThunderyHeavyRain|ThunderySnowShowers)  echo "#2c2847" ;;
-        *)                                                      echo "#000000" ;;
+        "Sunny")                                                            echo "#2e6399" ;;
+        "Partly Cloudy")                                                    echo "#36495c" ;;
+        "Cloudy")                                                           echo "#44484d" ;;
+        "Very Cloudy")                                                      echo "#2c3036" ;;
+        "Fog")                                                              echo "#50555c" ;;
+        "Light Showers")                                                    echo "#2c3e50" ;;
+        "Heavy Showers")                                                    echo "#1a252f" ;;
+        "Light Rain")                                                       echo "#2c3e50" ;;
+        "Heavy Rain")                                                       echo "#1a252f" ;;
+        "LightS leet"|"Light Sleet Showers")                                echo "#405163" ;;
+        "Light Snow"|"Light Snow Showers")                                  echo "#405163" ;;
+        "Heavy Snow"|"Heavy Snow Showers")                                  echo "#2b3a4a" ;;
+        "Thundery Showers"|"Thundery Heavy Rain"|"Thundery Snow Showers")   echo "#2c2847" ;;
+        *)                                                                  echo "#000000" ;;
     esac
 }
 
