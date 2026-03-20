@@ -31,6 +31,34 @@ cd "$PAK_DIR" || exit 1
 PRESENTER="minui-presenter-tg5040"
 KEYBOARD="minui-keyboard-tg5040"
 
+# ─── Preset locations ─────────────────────────────────────────────────────────
+# Format: "City Name|units" where units is u=imperial, m=metric.
+# The units flag is unused in this commit — it is read in the units prompt commit.
+# One entry is picked at random to pre-fill the keyboard on first launch.
+PRESET_LOCATIONS="\
+Utqiagvik, AK|u
+Phoenix, AZ|u
+Denver, CO|u
+Chicago, IL|u
+New Orleans, LA|u
+Miami, FL|u
+New York, NY|u
+Seattle, WA|u
+Honolulu, HI|u
+Reykjavik, Iceland|m
+London, UK|m
+Kyiv, Ukraine|m
+Kopaonik, Serbia|m
+Dubai, UAE|m
+Mumbai, India|m
+Singapore|m
+Ushuaia, Argentina|m"
+
+# Pick a random line from the preset list
+random_preset() {
+    echo "$PRESET_LOCATIONS" | awk 'NF > 0 { lines[NR] = $0 } END { srand(); print lines[int(rand() * NR) + 1] }'
+}
+
 # ─── Settings ─────────────────────────────────────────────────────────────────
 # Function to read a saved setting or return a default value
 read_setting() {
@@ -72,10 +100,16 @@ get_bg_color() {
 # ─── Location prompt ──────────────────────────────────────────────────────────
 # Ask the user for their city
 prompt_location() {
-    current=$(read_setting location "Cedar Rapids")
+    # Pre-fill with saved location, or a random preset city on first launch
+    if [ -f "$HOME/location" ]; then
+        prefill=$(read_setting location "")
+    else
+        prefill=$(random_preset | cut -d'|' -f1)
+    fi
+
     NEW_LOC=$($KEYBOARD \
         --title "Enter city, ZIP, or airport code" \
-        --initial-value "$current")
+        --initial-value "$prefill")
     KB_EXIT=$?
 
     # If the user typed something & pressed okay, save it
@@ -103,9 +137,9 @@ do_fetch() {
     loc_enc=$(echo "$LOCATION" | sed 's/ /+/g')
 
     $PRESENTER --message "Fetching weather for $LOCATION." \
-    --message-alignment bottom \
-    --timeout 2 \
-    --show-time-left
+        --message-alignment bottom \
+        --timeout 2 \
+        --show-time-left
 
     # &u = USCS units (Fahrenheit, mph). URL stored in a variable so & stays unencoded
     # (unencoded & = new query parameter; %26 would make wttr.in treat it as part of the format string)
