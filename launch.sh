@@ -33,7 +33,6 @@ KEYBOARD="minui-keyboard-tg5040"
 
 # ─── Preset locations ─────────────────────────────────────────────────────────
 # Format: "City Name|units" where units is u=imperial, m=metric.
-# The units flag is unused in this commit — it is read in the units prompt commit.
 # One entry is picked at random to pre-fill the keyboard on first launch.
 PRESET_LOCATIONS="\
 Utqiagvik, AK|u
@@ -98,7 +97,7 @@ get_bg_color() {
 }
 
 # ─── Location prompt ──────────────────────────────────────────────────────────
-# Ask the user for their city
+# Ask the user for their city, then ask imperial vs metric.
 prompt_location() {
     # Pre-fill with saved location, or a random preset city on first launch
     if [ -f "$HOME/location" ]; then
@@ -112,18 +111,34 @@ prompt_location() {
         --initial-value "$prefill")
     KB_EXIT=$?
 
-    # If the user typed something & pressed okay, save it
-    if [ $KB_EXIT -eq 0 ] && [ -n "$NEW_LOC" ]; then
-        write_setting location "$NEW_LOC"
-        LOCATION="$NEW_LOC"
-        return 0
-    fi
-    return 1  # The user cancelled
+    # User cancelled the keyboard
+    [ $KB_EXIT -ne 0 ] || [ -z "$NEW_LOC" ] && return 1
+
+    # Ask imperial vs metric
+    $PRESENTER \
+        --message "Use Imperial or Metric units for $NEW_LOC?" \
+        --confirm-button A --confirm-text "IMPERIAL" --confirm-show \
+        --action-button  X --action-text  "METRIC"   --action-show \
+        --cancel-button  B --cancel-text  "CANCEL"   --cancel-show
+    UNITS_EXIT=$?
+
+    case $UNITS_EXIT in
+        0) NEW_UNITS="u" ;;  # A — Imperial
+        4) NEW_UNITS="m" ;;  # X — Metric
+        *) return 1 ;;       # B — Cancel
+    esac
+
+    write_setting location "$NEW_LOC"
+    write_setting units    "$NEW_UNITS"
+    LOCATION="$NEW_LOC"
+    UNITS_FLAG="$NEW_UNITS"
+    return 0
 }
 
-# Load saved location, prompt on first launch
+# Load saved location & units; prompt on first launch
 LOCATION=$(read_setting location "")
-if [ -z "$LOCATION" ]; then
+UNITS_FLAG=$(read_setting units "")
+if [ -z "$LOCATION" ] || [ -z "$UNITS_FLAG" ]; then
     prompt_location || exit 0
 fi
 
@@ -141,9 +156,10 @@ do_fetch() {
         --timeout 2 \
         --show-time-left
 
-    # &u = USCS units (Fahrenheit, mph). URL stored in a variable so & stays unencoded
+    # UNITS_FLAG is either u (imperial) or m (metric)
+    # URL stored in a variable so & stays unencoded
     # (unencoded & = new query parameter; %26 would make wttr.in treat it as part of the format string)
-    WTTR_URL="http://wttr.in/${loc_enc}?format=%C%7C%t%7C%f%7C%w%7C%h%7C%u&u"
+    WTTR_URL="http://wttr.in/${loc_enc}?format=%C%7C%t%7C%f%7C%w%7C%h%7C%u&${UNITS_FLAG}"
     wget -q -O "$WEATHER_CACHE.tmp" "$WTTR_URL" 2>/dev/null
     WGET_EXIT=$?
 
