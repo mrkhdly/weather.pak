@@ -24,7 +24,7 @@ echo "Starting $PAK_NAME"
 cd "$PAK_DIR" || exit 1
 echo 1 > /tmp/stay_awake # Prevent the device from sleeping while the app is running
 # Ensure the stay_awake file is deleted & the presenter process is killed when the app exits
-trap "rm -f /tmp/stay_awake; killall $PRESENTER 2>/dev/null" EXIT INT TERM HUP QUIT
+trap 'rm -f /tmp/stay_awake; killall $PRESENTER 2>/dev/null' EXIT INT TERM HUP QUIT
 
 # ─── Binaries ─────────────────────────────────────────────────────────────────
 # Set the names of the tools that draw the screen & keyboard
