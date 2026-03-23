@@ -156,9 +156,8 @@ do_fetch() {
     loc_enc=$(echo "$LOCATION" | sed 's/ /+/g')
 
     $PRESENTER --message "Fetching weather for $LOCATION." \
-        --message-alignment bottom \
-        --timeout 2 \
-        --show-time-left
+        --message-alignment bottom &
+    PRESENTER_PID=$!
 
     # UNITS_FLAG is either u (imperial) or m (metric)
     # URL stored in a variable so & stays unencoded
@@ -166,6 +165,9 @@ do_fetch() {
     WTTR_URL="http://wttr.in/${loc_enc}?format=%C%7C%t%7C%f%7C%w%7C%h%7C%u&${UNITS_FLAG}"
     wget -q -O "$WEATHER_CACHE.tmp" "$WTTR_URL" 2>/dev/null
     WGET_EXIT=$?
+
+    kill $PRESENTER_PID 2>/dev/null
+    wait $PRESENTER_PID 2>/dev/null
 
     # Stop if the download failed
     if [ $WGET_EXIT -ne 0 ] || [ ! -s "$WEATHER_CACHE.tmp" ]; then
