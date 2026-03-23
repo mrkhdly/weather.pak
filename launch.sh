@@ -91,7 +91,7 @@ get_bg_color() {
         "Heavy Showers")                                                    echo "#1a252f" ;;
         "Light Rain")                                                       echo "#2c3e50" ;;
         "Heavy Rain")                                                       echo "#1a252f" ;;
-        "LightS leet"|"Light Sleet Showers")                                echo "#405163" ;;
+        "Light Sleet"|"Light Sleet Showers")                                echo "#405163" ;;
         "Light Snow"|"Light Snow Showers")                                  echo "#405163" ;;
         "Heavy Snow"|"Heavy Snow Showers")                                  echo "#2b3a4a" ;;
         "Thundery Showers"|"Thundery Heavy Rain"|"Thundery Snow Showers")   echo "#2c2847" ;;
