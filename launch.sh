@@ -20,6 +20,7 @@ export PATH="$PAK_DIR/bin/$PLATFORM:$PAK_DIR/bin/$ARCH:$PAK_DIR/bin/shared:$PATH
 
 # Save a record of what happens to a text file for troubleshooting
 rm -f "$LOGS_PATH/$PAK_NAME.txt"
+mkdir -p "$LOGS_PATH" # Ensure the logs folder exists before redirecting output
 exec >>"$LOGS_PATH/$PAK_NAME.txt" 2>&1
 set -x
 
