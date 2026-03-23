@@ -12,7 +12,7 @@ export HOME="$SHARED_USERDATA_PATH/$PAK_NAME"
 mkdir -p "$HOME"
 
 # Add the tool folders so the system can find them
-export PATH="$PAK_DIR/bin/$PLATFORM:$PAK_DIR/bin/$ARCH:$PAK_DIR/bin/shared:$PATH"
+export PATH="$PAK_DIR/bin/$PLATFORM:$PAK_DIR/bin/shared:$PATH"
 
 # Save a record of what happens to a text file for troubleshooting
 rm -f "$LOGS_PATH/$PAK_NAME.txt"
