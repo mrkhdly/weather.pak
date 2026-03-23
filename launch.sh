@@ -7,10 +7,6 @@ PAK_DIR="$(dirname "$0")"
 PAK_NAME="$(basename "$PAK_DIR")"
 PAK_NAME="${PAK_NAME%.*}"
 
-# Check if the device is 64-bit
-ARCH=arm
-uname -m | grep -q '64' && ARCH=arm64
-
 # Create a folder to save settings & cache
 export HOME="$SHARED_USERDATA_PATH/$PAK_NAME"
 mkdir -p "$HOME"
