@@ -25,6 +25,7 @@ set -x
 
 echo "Starting $PAK_NAME"
 cd "$PAK_DIR" || exit 1
+echo 1 > /tmp/stay_awake
 
 # ─── Binaries ─────────────────────────────────────────────────────────────────
 # Set the names of the tools that draw the screen & keyboard
