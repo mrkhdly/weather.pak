@@ -160,9 +160,10 @@ do_fetch() {
     # (unencoded & = new query parameter; %26 would make wttr.in treat it as part of the format string)
     WTTR_URL="http://wttr.in/${loc_enc}?format=%C%7C%t%7C%f%7C%w%7C%h%7C%u&${UNITS_FLAG}"
     wget -q -O "$WEATHER_CACHE.tmp" "$WTTR_URL" 2>/dev/null
-    WGET_EXIT=$?
 
     kill $PRESENTER_PID 2>/dev/null
+    sleep 1
+    kill -9 $PRESENTER_PID 2>/dev/null
     wait $PRESENTER_PID 2>/dev/null
 
     # Stop if the download failed
