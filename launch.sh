@@ -74,25 +74,29 @@ write_setting() {
 }
 
 # ─── Background color ─────────────────────────────────────────────────────────
-# Map the normalized wttr.in condition name to a background color.
-# The full list of possible %C values comes from WEATHER_SYMBOL in
-# https://github.com/chubin/wttr.in/blob/master/lib/constants.py
+# Map the wttr.in condition name to a background color.
+# Lowercased first so casing differences never cause a miss.
 get_bg_color() {
-    case "$1" in
-        "Sunny")                                                            echo "#2e6399" ;;
-        "Partly Cloudy")                                                    echo "#36495c" ;;
-        "Cloudy")                                                           echo "#44484d" ;;
-        "Very Cloudy")                                                      echo "#2c3036" ;;
-        "Fog")                                                              echo "#50555c" ;;
-        "Light Showers")                                                    echo "#2c3e50" ;;
-        "Heavy Showers")                                                    echo "#1a252f" ;;
-        "Light Rain")                                                       echo "#2c3e50" ;;
-        "Heavy Rain")                                                       echo "#1a252f" ;;
-        "Light Sleet"|"Light Sleet Showers")                                echo "#405163" ;;
-        "Light Snow"|"Light Snow Showers")                                  echo "#405163" ;;
-        "Heavy Snow"|"Heavy Snow Showers")                                  echo "#2b3a4a" ;;
-        "Thundery Showers"|"Thundery Heavy Rain"|"Thundery Snow Showers")   echo "#2c2847" ;;
-        *)                                                                  echo "#000000" ;;
+    _c=$(echo "$1" | tr 'A-Z' 'a-z')
+    case "$_c" in
+        "sunny"|"clear")                                                        echo "#2e6399" ;;
+        "partly cloudy")                                                        echo "#36495c" ;;
+        "cloudy")                                                               echo "#44484d" ;;
+        "overcast"|"very cloudy")                                               echo "#2c3036" ;;
+        # Low-visibility
+        "fog"|"mist"|"haze"|"smoke")                                            echo "#50555c" ;;
+        # Light rain & drizzle
+        "light showers"|"light rain"|"light rain shower"|\
+        "patchy light drizzle"|"patchy rain nearby")                            echo "#2c3e50" ;;
+        "heavy showers"|"heavy rain")                                           echo "#1a252f" ;;
+        # Frozen precipitation
+        "light sleet"|"light sleet showers"|"light freezing rain"|\
+        "light snow"|"light snow showers")                                      echo "#405163" ;;
+        "heavy snow"|"heavy snow showers")                                      echo "#2b3a4a" ;;
+        # Thunderstorms
+        "thundery showers"|"thundery heavy rain"|"thundery snow showers"|\
+        "thunderstorm"|"thundery outbreaks in nearby")                          echo "#2c2847" ;;
+        *)                                                                      echo "#000000" ;;
     esac
 }
 
