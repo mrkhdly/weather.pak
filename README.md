@@ -1,6 +1,6 @@
 # weather.pak
 
-A simple weather tool for the TrimUI Brick running [MinUI](https://github.com/shauninman/MinUI) / [NextUI](https://github.com/nickelc/nextui). Shows current conditions for any city, ZIP code, or airport code. Requires a WiFi connection.
+A simple weather tool for the TrimUI Brick running [MinUI](https://github.com/shauninman/MinUI) / [NextUI](https://github.com/LoveRetro/NextUI). Shows current conditions for any city, ZIP code, or airport code. Requires a WiFi connection.
 
 Weather data is pulled from [wttr.in](https://wttr.in).
 
