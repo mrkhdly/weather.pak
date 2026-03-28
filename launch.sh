@@ -94,11 +94,11 @@ get_bg_color() {
             echo "#c2cdd6" ;;
         "patches of fog, mist")
             echo "#c8cdd4" ;;
-        # Drifting sand / dust
-        "low drifting sand")
+        # Dust & sand
+        "low drifting sand"|"widespread dust")
             echo "#c4a35a" ;;
         # Drizzle
-        "drizzle"|"light drizzle and rain")
+        "drizzle"|"light drizzle"|"light drizzle and rain")
             echo "#6a9fb5" ;;
         # Light rain & showers
         "light showers"|"light rain shower"|\
@@ -107,7 +107,7 @@ get_bg_color() {
             echo "#4ca8a1" ;;
         "rain shower")
             echo "#5c9aab" ;;
-        "light rain")
+        "light rain"|"rain")
             echo "#3a86ff" ;;
         "moderate rain at times")
             echo "#2d6a8f" ;;
@@ -127,13 +127,18 @@ get_bg_color() {
             echo "#a8c4d4" ;;
         "heavy snow"|"heavy snow showers"|"snow, blowing snow")
             echo "#b4d4e0" ;;
-        # Thunderstorms
-        "light rain with thunderstorm")
+        # Thunderstorms — lighter variants first, full storm last
+        "light rain with thunderstorm"|\
+        "light rain shower, thunderstorm"|\
+        "patchy light rain in area with thunder")
             echo "#6a3d8f" ;;
         "thunderstorm in vicinity")
             echo "#5c3570" ;;
         "thundery showers"|"thundery heavy rain"|"thundery snow showers"|\
-        "thunderstorm"|"thundery outbreaks in nearby")
+        "thunderstorm"|"thundery outbreaks in nearby"|\
+        "light rain with thunderstorm, rain with thunderstorm"|\
+        "rain with thunderstorm, light rain shower"|\
+        "smoke, rain with thunderstorm")
             echo "#4a148c" ;;
         *)
             echo "#000000" ;;
