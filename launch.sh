@@ -79,26 +79,64 @@ write_setting() {
 get_bg_color() {
     _c=$(echo "$1" | tr 'A-Z' 'a-z')
     case "$_c" in
-        "sunny"|"clear")                                                        echo "#e2a42b" ;;
-        "partly cloudy")                                                        echo "#8bb8d6" ;;
-        "cloudy")                                                               echo "#8c92ac" ;;
-        "overcast"|"very cloudy")                                               echo "#5e6472" ;;
-        # Low-visibility
-        "fog"|"mist"|"haze"|"smoke")                                            echo "#aeb5c2" ;;
-        # Light rain & drizzle
+        "sunny"|"clear")
+            echo "#e2a42b" ;;
+        "partly cloudy")
+            echo "#8bb8d6" ;;
+        "cloudy")
+            echo "#8c92ac" ;;
+        "overcast"|"very cloudy")
+            echo "#5e6472" ;;
+        # Fog & low visibility
+        "fog"|"mist"|"haze"|"smoke")
+            echo "#aeb5c2" ;;
+        "freezing fog")
+            echo "#c2cdd6" ;;
+        "patches of fog, mist")
+            echo "#c8cdd4" ;;
+        # Drifting sand / dust
+        "low drifting sand")
+            echo "#c4a35a" ;;
+        # Drizzle
+        "drizzle"|"light drizzle and rain")
+            echo "#6a9fb5" ;;
+        # Light rain & showers
         "light showers"|"light rain shower"|\
-        "patchy light drizzle"|"patchy rain nearby")                            echo "#4ca8a1" ;;
-        "light rain")                                                           echo "#3a86ff" ;;
-        "heavy showers")                                                        echo "#2b7a78" ;;
-        "heavy rain")                                                           echo "#003049" ;;
-        # Frozen precipitation
+        "patchy light drizzle"|"patchy rain nearby"|\
+        "shower in vicinity")
+            echo "#4ca8a1" ;;
+        "rain shower")
+            echo "#5c9aab" ;;
+        "light rain")
+            echo "#3a86ff" ;;
+        "moderate rain at times")
+            echo "#2d6a8f" ;;
+        "heavy showers")
+            echo "#2b7a78" ;;
+        "heavy rain")
+            echo "#003049" ;;
+        # Mixed rain & frozen
+        "light rain and snow shower"|\
+        "light rain shower, rain and small hail/snow pallets shower")
+            echo "#7a9eb5" ;;
+        # Snow & sleet
         "light sleet"|"light sleet showers"|"light freezing rain"|\
-        "light snow"|"light snow showers")                                      echo "#9eb5ba" ;;
-        "heavy snow"|"heavy snow showers")                                      echo "#b4d4e0" ;;
+        "light snow"|"light snow showers"|"light snow, mist")
+            echo "#9eb5ba" ;;
+        "moderate snow")
+            echo "#a8c4d4" ;;
+        "heavy snow"|"heavy snow showers"|"snow, blowing snow")
+            echo "#b4d4e0" ;;
         # Thunderstorms
+        "light rain with thunderstorm")
+            echo "#6a3d8f" ;;
+        "thunderstorm in vicinity")
+            echo "#5c3570" ;;
         "thundery showers"|"thundery heavy rain"|"thundery snow showers"|\
-        "thunderstorm"|"thundery outbreaks in nearby")                          echo "#4a148c" ;;
-        *)                                                                      echo "#000000" ;;
+        "thunderstorm"|"thundery outbreaks in nearby")
+            echo "#4a148c" ;;
+        *)
+            echo "#000000" ;;
     esac
 }
 
