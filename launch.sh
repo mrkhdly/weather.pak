@@ -105,17 +105,18 @@ get_bg_color() {
         "patchy light drizzle"|"patchy rain nearby"|\
         "shower in vicinity")
             echo "#4ca8a1" ;;
-        "rain shower")
+        "rain shower"|"light rain shower, rain shower")
             echo "#5c9aab" ;;
         "light rain"|"rain")
             echo "#3a86ff" ;;
-        "moderate rain at times")
+        "moderate rain at times"|"moderate or heavy rain shower")
             echo "#2d6a8f" ;;
         "heavy showers")
             echo "#2b7a78" ;;
         "heavy rain")
             echo "#003049" ;;
         # Mixed rain & frozen
+        "light rain and snow"|\
         "light rain and snow shower"|\
         "light rain shower, rain and small hail/snow pallets shower")
             echo "#7a9eb5" ;;
@@ -136,6 +137,8 @@ get_bg_color() {
             echo "#5c3570" ;;
         "thundery showers"|"thundery heavy rain"|"thundery snow showers"|\
         "thunderstorm"|"thundery outbreaks in nearby"|\
+        "thunderstorm, rain with thunderstorm"|\
+        "heavy rain shower, heavy rain with thunderstorm, rain shower"|\
         "light rain with thunderstorm, rain with thunderstorm"|\
         "rain with thunderstorm, light rain shower"|\
         "smoke, rain with thunderstorm")
