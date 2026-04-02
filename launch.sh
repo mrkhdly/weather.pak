@@ -98,33 +98,35 @@ get_bg_color() {
         "low drifting sand"|"widespread dust")
             echo "#c4a35a" ;;
         # Drizzle
-        "drizzle"|"light drizzle"|"light drizzle and rain")
+        "drizzle"|"light drizzle"|"light drizzle and rain"|"light drizzle, mist")
             echo "#6a9fb5" ;;
         # Light rain & showers
-        "light showers"|"light rain shower"|\
+        "light showers"|"light rain shower"|"light rain shower, mist"|\
         "patchy light drizzle"|"patchy rain nearby"|\
         "shower in vicinity")
             echo "#4ca8a1" ;;
         "rain shower"|"light rain shower, rain shower")
             echo "#5c9aab" ;;
-        "light rain"|"rain")
+        "light rain"|"rain"|"light rain, mist"|"rain, mist, light rain")
             echo "#3a86ff" ;;
         "moderate rain at times"|"moderate or heavy rain shower")
             echo "#2d6a8f" ;;
         "heavy showers")
             echo "#2b7a78" ;;
-        "heavy rain")
+        "heavy rain"|"heavy rain, mist")
             echo "#003049" ;;
         # Mixed rain & frozen
         "light rain and snow"|\
         "light rain and snow shower"|\
+        "light rain shower, light rain and snow shower"|\
         "light rain shower, rain and small hail/snow pallets shower")
             echo "#7a9eb5" ;;
         # Snow & sleet
-        "light sleet"|"light sleet showers"|"light freezing rain"|\
-        "light snow"|"light snow showers"|"light snow, mist")
+        "light sleet"|"light sleet showers"|"light freezing rain"|"light freezing rain, mist"|\
+        "light snow"|"light snow shower"|"light snow showers"|"light snow, mist"|\
+        "light snow, low drifting snow")
             echo "#9eb5ba" ;;
-        "moderate snow")
+        "moderate snow"|"snow"|"snow, mist")
             echo "#a8c4d4" ;;
         "heavy snow"|"heavy snow showers"|"snow, blowing snow")
             echo "#b4d4e0" ;;
@@ -138,6 +140,7 @@ get_bg_color() {
         "thundery showers"|"thundery heavy rain"|"thundery snow showers"|\
         "thunderstorm"|"thundery outbreaks in nearby"|\
         "thunderstorm, rain with thunderstorm"|\
+        "haze, rain with thunderstorm"|\
         "heavy rain shower, heavy rain with thunderstorm, rain shower"|\
         "light rain with thunderstorm, rain with thunderstorm"|\
         "rain with thunderstorm, light rain shower"|\
