@@ -24,7 +24,7 @@ echo "Starting $PAK_NAME"
 cd "$PAK_DIR" || exit 1
 echo 1 > /tmp/stay_awake # Prevent the device from sleeping while the app is running
 # Ensure the stay_awake file is deleted & the presenter process is killed when the app exits
-trap 'rm -f /tmp/stay_awake; killall $PRESENTER 2>/dev/null' EXIT INT TERM HUP QUIT
+trap 'rm -f /tmp/stay_awake "$WEATHER_CACHE.tmp"; killall $PRESENTER 2>/dev/null' EXIT INT TERM HUP QUIT
 
 # ─── Binaries ─────────────────────────────────────────────────────────────────
 # Set the names of the tools that draw the screen & keyboard
@@ -155,9 +155,8 @@ get_bg_color() {
 # Ask the user for their city, then ask imperial vs metric.
 prompt_location() {
     # Pre-fill with saved location, or a random preset city on first launch
-    if [ -f "$HOME/location" ]; then
-        prefill=$(read_setting location "")
-    else
+    prefill=$(read_setting location "")
+    if [ -z "$prefill" ]; then
         prefill=$(random_preset | cut -d'|' -f1)
     fi
 
