@@ -109,7 +109,7 @@ get_bg_color() {
             echo "#5c9aab" ;;
         "light rain"|"rain"|"light rain, mist"|"rain, mist, light rain")
             echo "#3a86ff" ;;
-        "moderate rain at times"|"moderate or heavy rain shower")
+        "moderate rain"|"moderate rain at times"|"moderate or heavy rain shower")
             echo "#2d6a8f" ;;
         "heavy showers")
             echo "#2b7a78" ;;
