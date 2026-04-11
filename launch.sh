@@ -92,8 +92,10 @@ get_bg_color() {
             echo "#aeb5c2" ;;
         "freezing fog")
             echo "#c2cdd6" ;;
-        "patches of fog, mist")
+        "patches of fog"|"patches of fog, mist")
             echo "#c8cdd4" ;;
+        "shallow fog")
+            echo "#c0c6ce" ;;
         # Dust & sand
         "low drifting sand"|"widespread dust")
             echo "#c4a35a" ;;
@@ -124,11 +126,14 @@ get_bg_color() {
         # Snow & sleet
         "light sleet"|"light sleet showers"|"light freezing rain"|"light freezing rain, mist"|\
         "light snow"|"light snow shower"|"light snow showers"|"light snow, mist"|\
-        "light snow, low drifting snow")
+        "light snow, low drifting snow"|"ice crystals")
             echo "#9eb5ba" ;;
         "moderate snow"|"snow"|"snow, mist")
             echo "#a8c4d4" ;;
-        "heavy snow"|"heavy snow showers"|"snow, blowing snow")
+        "patchy moderate snow")
+            echo "#a0b8cc" ;;
+        "heavy snow"|"heavy snow showers"|"snow, blowing snow"|\
+        "light snow, blowing snow")
             echo "#b4d4e0" ;;
         # Thunderstorms — lighter variants first, full storm last
         "light rain with thunderstorm"|\
