@@ -109,7 +109,8 @@ get_bg_color() {
             echo "#4ca8a1" ;;
         "rain shower"|"light rain shower, rain shower")
             echo "#5c9aab" ;;
-        "light rain"|"rain"|"light rain, mist"|"rain, mist, light rain")
+        "light rain"|"rain"|"light rain, mist"|"rain, mist, light rain"|\
+        "rain, mist")
             echo "#3a86ff" ;;
         "moderate rain"|"moderate rain at times"|"moderate or heavy rain shower")
             echo "#2d6a8f" ;;
@@ -126,7 +127,8 @@ get_bg_color() {
         # Snow & sleet
         "light sleet"|"light sleet showers"|"light freezing rain"|"light freezing rain, mist"|\
         "light snow"|"light snow shower"|"light snow showers"|"light snow, mist"|\
-        "light snow, low drifting snow"|"ice crystals")
+        "light snow, low drifting snow"|"ice crystals"|\
+        "light snow shower, parftial fog")
             echo "#9eb5ba" ;;
         "moderate snow"|"snow"|"snow, mist")
             echo "#a8c4d4" ;;
