@@ -90,6 +90,8 @@ get_bg_color() {
         # Fog & low visibility
         "fog"|"mist"|"haze"|"smoke")
             echo "#aeb5c2" ;;
+        "mist, fog")
+            echo "#aeb5c2" ;;
         "freezing fog")
             echo "#c2cdd6" ;;
         "patches of fog"|"patches of fog, mist")
@@ -99,10 +101,11 @@ get_bg_color() {
         "shallow fog")
             echo "#c0c6ce" ;;
         # Dust & sand
-        "low drifting sand"|"widespread dust")
+        "low drifting sand"|"widespread dust"|"sand")
             echo "#c4a35a" ;;
         # Drizzle
-        "drizzle"|"light drizzle"|"light drizzle and rain"|"light drizzle, mist")
+        "drizzle"|"light drizzle"|"light drizzle and rain"|"light drizzle, mist"|\
+        "light drizzle, fog")
             echo "#6a9fb5" ;;
         "light unknown precipitation")
             echo "#6a9fb5" ;;
@@ -110,12 +113,13 @@ get_bg_color() {
         "light showers"|"light rain shower"|"light rain shower, mist"|\
         "patchy light drizzle"|"patchy rain nearby"|"patchy light rain"|\
         "light rain shower, shower in vicinity"|\
-        "shower in vicinity")
+        "shower in vicinity"|"shower in vicinity, light rain")
             echo "#4ca8a1" ;;
-        "rain shower"|"light rain shower, rain shower")
+        "rain shower"|"light rain shower, rain shower"|\
+        "rain shower, mist")
             echo "#5c9aab" ;;
         "light rain"|"rain"|"light rain, mist"|"rain, mist, light rain"|\
-        "rain, mist")
+        "rain, mist"|"light rain, rain")
             echo "#3a86ff" ;;
         "moderate rain"|"moderate rain at times"|"moderate or heavy rain shower")
             echo "#2d6a8f" ;;
@@ -133,35 +137,49 @@ get_bg_color() {
         # Snow & sleet
         "light sleet"|"light sleet showers"|"light freezing rain"|"light freezing rain, mist"|\
         "light snow"|"light snow shower"|"light snow showers"|"light snow, mist"|\
-        "light snow, low drifting snow"|"ice crystals"|\
-        "light snow shower, parftial fog"|\
-        "patchy light snow")
+        "light snow, low drifting snow"|"light snow shower, low drifting snow"|\
+        "ice crystals"|"light snow shower, parftial fog"|"patchy light snow")
             echo "#9eb5ba" ;;
-        "moderate snow"|"snow"|"snow, mist"|"low drifting snow")
+        "moderate snow"|"snow"|"snow, mist"|"low drifting snow"|\
+        "snow shower")
             echo "#a8c4d4" ;;
         "patchy moderate snow")
             echo "#a0b8cc" ;;
+        "blizzard"|"blowing snow"|\
         "heavy snow"|"heavy snow showers"|"snow, blowing snow"|\
-        "light snow, blowing snow")
+        "light snow, blowing snow"|"snow shower, blowing snow"|\
+        "light snow shower, heavy snow shower"|\
+        "moderate or heavy snow showers"|\
+        "heavy snow and small hail/snow pallets shower")
             echo "#b4d4e0" ;;
         # Thunderstorms — lighter variants first, full storm last
         "light rain with thunderstorm"|\
         "light rain shower, thunderstorm"|\
+        "light rain, rain with thunderstorm"|\
         "patchy light rain in area with thunder")
             echo "#6a3d8f" ;;
         "thunderstorm in vicinity"|\
-        "thunderstorm in vicinity, light rain shower")
+        "thunderstorm in vicinity, light rain shower"|\
+        "thunderstorm in vicinity, light rain with thunderstorm"|\
+        "thunderstorm in vicinity, mist")
             echo "#5c3570" ;;
         "thundery showers"|"thundery heavy rain"|"thundery snow showers"|\
         "thunderstorm"|"thundery outbreaks in nearby"|\
         "thunderstorm, rain with thunderstorm"|\
         "thunderstorm, heavy rain with thunderstorm"|\
+        "thunderstorm, shower in vicinity"|\
+        "thunderstorm, haze"|\
         "heavy rain with thunderstorm"|\
         "haze, rain with thunderstorm"|\
         "heavy rain shower, heavy rain with thunderstorm, rain shower"|\
+        "heavy rain with thunderstorm, rain with thunderstorm, heavy rain shower"|\
         "light rain with thunderstorm, rain with thunderstorm"|\
+        "light rain shower, rain with thunderstorm, rain shower"|\
+        "rain with thunderstorm"|\
+        "rain shower, rain with thunderstorm"|\
         "rain with thunderstorm, light rain shower"|\
-        "smoke, rain with thunderstorm")
+        "smoke, rain with thunderstorm"|\
+        "widespread dust, dust storm with thunderstorm")
             echo "#4a148c" ;;
         *)
             echo "#000000" ;;
