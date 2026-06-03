@@ -106,7 +106,7 @@ get_bg_color() {
             echo "#c4a35a" ;;
         # Drizzle
         "drizzle"|"light drizzle"|"light drizzle and rain"|"light drizzle, mist"|\
-        "light drizzle, fog"|"drizzle, rain"|"light drizzle and mist"|\
+        "light drizzle, fog"|"drizzle, rain"|"drizzle and rain"|"light drizzle and mist"|\
         "light drizzle and rain, rain shower")
             echo "#6a9fb5" ;;
         "light unknown precipitation")
@@ -169,7 +169,8 @@ get_bg_color() {
         "moderate or heavy rain in area with thunder"|\
         "patchy light snow in area with thunder"|\
         "patchy light rain in area with thunder"|\
-        "light rain shower, light rain and hail with thunderstorm, squalls")
+        "light rain shower, light rain and hail with thunderstorm, squalls"|\
+        "light rain with thunderstorm, light mist")
             echo "#6a3d8f" ;;
         "thunderstorm in vicinity"|\
         "thunderstorm in vicinity, light rain shower"|\
@@ -186,7 +187,7 @@ get_bg_color() {
         "thunderstorm, shower in vicinity"|"thunderstorm, shower in vicinity, rain with thunderstorm"|\
         "thunderstorm, haze"|\
         "heavy rain with thunderstorm"|\
-        "haze, rain with thunderstorm"|\
+        "haze, rain with thunderstorm"|"haze, light rain with thunderstorm"|\
         "heavy rain shower, heavy rain with thunderstorm, rain shower"|\
         "heavy rain with thunderstorm, rain with thunderstorm, heavy rain shower"|\
         "light rain with thunderstorm, rain with thunderstorm"|\
@@ -195,7 +196,7 @@ get_bg_color() {
         "rain, thunderstorm in vicinity, rain with thunderstorm"|\
         "rain with thunderstorm"|\
         "rain with thunderstorm, heavy rain with thunderstorm"|\
-        "rain shower, rain with thunderstorm"|\
+        "rain shower, rain with thunderstorm"|"shower in vicinity, rain with thunderstorm, rain shower"|\
         "rain with thunderstorm, light rain shower"|\
         "smoke, rain with thunderstorm"|\
         "widespread dust, dust storm with thunderstorm"|\
