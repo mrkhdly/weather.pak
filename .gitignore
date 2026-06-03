@@ -5,3 +5,6 @@ bin/tg5040/minui-keyboard-tg5040
 # Build artifacts
 dist/
 staging/
+
+# Harvested wttr.in condition data (generated locally)
+conditions/harvest-*.txt
