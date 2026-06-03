@@ -59,6 +59,17 @@ To reset to defaults, delete that folder from your SD card.
 
 ---
 
+## Condition harvesting
+
+wttr.in does not publish a complete list of possible weather condition strings,
+so `harvest-conditions.sh` queries hundreds of diverse locations around the world
+and saves every unique condition it finds. The output is used to find new strings
+to add to the `get_bg_color` function in `launch.sh`.
+
+Run it locally with `bash harvest-conditions.sh` — results land in `conditions/`.
+
+---
+
 ## Credits
 
 - [josegonzalez/minui-presenter](https://github.com/josegonzalez/minui-presenter) -- screen display
