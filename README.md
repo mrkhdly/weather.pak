@@ -59,7 +59,7 @@ To reset to defaults, delete that folder from your SD card.
 
 ---
 
-## Condition harvesting
+## `harverst-conditions.sh`
 
 wttr.in does not publish a complete list of possible weather condition strings,
 so `harvest-conditions.sh` queries hundreds of diverse locations around the world
