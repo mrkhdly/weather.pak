@@ -185,6 +185,7 @@ get_bg_color() {
         "moderate or heavy rain in area with thunder"|\
         "patchy light snow in area with thunder"|\
         "patchy light rain in area with thunder"|\
+        "patchy light rain with thunder"|\
         "light rain shower, light rain and hail with thunderstorm, squalls"|\
         "light rain shower, thunderstorm in vicinity, heavy rain and hail with thunderstorm"|\
         "light rain with thunderstorm, light mist"|\
