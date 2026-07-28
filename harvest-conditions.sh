@@ -8,7 +8,7 @@
 #         script's directory, plus live progress to stdout.
 
 DELAY=1          # seconds between requests (be polite to wttr.in)
-TIMEOUT=8        # wget timeout per request
+TIMEOUT=8        # request timeout per location
 
 # Output file with timestamp
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
@@ -16,6 +16,20 @@ TIMESTAMP=$(date +"%Y-%m-%d_%H%M%S")
 OUTPUT_DIR="$SCRIPT_DIR/conditions"
 mkdir -p "$OUTPUT_DIR"
 OUTPUT_FILE="$OUTPUT_DIR/harvest-${TIMESTAMP}.txt"
+
+urlencode() {
+    local string="$1" length i c
+    length=${#string}
+    for (( i=0; i<length; i++ )); do
+        c="${string:i:1}"
+        case "$c" in
+            [a-zA-Z0-9.~_-]) printf '%s' "$c" ;;
+            ' ') printf '+' ;;
+            ,) printf '%%2C' ;;
+            *) printf '%%%02X' "'$c" ;;
+        esac
+    done
+}
 
 LOCATIONS=(
   # --- Arctic / sub-arctic ---
@@ -471,10 +485,9 @@ for i in "${!LOCATIONS[@]}"; do
     elapsed_min=$((elapsed / 60))
     elapsed_sec=$((elapsed % 60))
 
-    loc_enc=$(python3 -c "import urllib.parse,sys; print(urllib.parse.quote(sys.argv[1]))" "$loc" 2>/dev/null \
-              || echo "$loc" | sed 's/ /+/g; s/,/%2C/g')
+    loc_enc=$(urlencode "$loc")
 
-    raw=$(wget -q -O - --timeout="$TIMEOUT" "http://wttr.in/${loc_enc}?format=%C" 2>/dev/null)
+    raw=$(curl -s --max-time "$TIMEOUT" "http://wttr.in/${loc_enc}?format=%C" 2>/dev/null)
     status=$?
 
     if [ $status -ne 0 ] || [ -z "$raw" ]; then
@@ -482,7 +495,8 @@ for i in "${!LOCATIONS[@]}"; do
         echo "$loc" >> "$ERROR_FILE"
     else
         # Strip leading/trailing whitespace
-        condition=$(echo "$raw" | xargs)
+        condition="${raw#"${raw%%[![:space:]]*}"}"
+        condition="${condition%"${condition##*[![:space:]]}"}"
         printf "  [%3d/%d] %02d:%02d  OK   %s → %s\n" "$count" "$TOTAL" "$elapsed_min" "$elapsed_sec" "$loc" "$condition"
         echo "$condition | $loc" >> "$SEEN_FILE"
     fi
