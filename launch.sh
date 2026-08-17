@@ -108,8 +108,8 @@ get_bg_color() {
         "blowing widespread dust"|"blowing sand"|"sand, widespread dust"|"well-developed dust/sand whirls")
             echo "#c4a35a" ;;
         # Drizzle
-        "drizzle"|"drizzle, mist"|"mist, drizzle"|"drizzle, fog"|"light drizzle"|"light drizzle and rain"|"light drizzle, mist"|\
-        "light drizzle, fog"|"drizzle, rain"|"drizzle and rain"|"light drizzle and mist"|\
+        "drizzle"|"drizzle, mist"|"mist, drizzle"|"drizzle, fog"|"fog, drizzle"|"light drizzle"|"light drizzle and rain"|"light drizzle, mist"|\
+        "light drizzle, fog"|"drizzle, rain"|"drizzle and rain"|"drizzle and rain, fog"|"light drizzle and mist"|\
         "light drizzle and rain, drizzle and rain"|"light drizzle, drizzle and rain"|"light drizzle and rain, rain shower"|"light drizzle and rain, mist"|\
         "heavy drizzle and rain"|"drizzle and rain, heavy drizzle and rain"|"drizzle and rain, mist"|\
         "light drizzle, drizzle"|"light drizzle and rain, drizzle"|"light drizzle, haze")
@@ -118,10 +118,11 @@ get_bg_color() {
             echo "#6a9fb5" ;;
         # Light rain & showers
         "light showers"|"light rain shower"|"light rain shower, mist"|\
-        "patchy light drizzle"|"patchy rain nearby"|"patchy light rain"|\
+        "patchy light drizzle"|"patchy rain nearby"|"patchy rain possible"|"patchy light rain"|\
         "light rain shower, shower in vicinity"|\
         "shower in vicinity"|"shower in vicinity, light rain"|"shower in vicinity, drizzle"|"shower in vicinity, rain"|\
         "light rain, light rain shower"|"light rain, rain shower"|"light rain, rain shower, mist"|"light rain, rain shower, rain"|\
+        "light rain, mist, rain shower"|\
         "light rain shower, drizzle and rain, mist"|\
         "light rain, shower in vicinity"|"light rain shower, shower in vicinity, heavy rain shower"|"heavy rain shower, light rain shower"|\
         "light rain shower, fog"|"fog, light rain shower"|"light rain shower, heavy rain shower"|\
@@ -133,11 +134,11 @@ get_bg_color() {
             echo "#5c9aab" ;;
         "light rain"|"rain"|"light rain, mist"|"rain, mist, light rain"|\
         "rain, mist"|"light rain, rain"|\
-        "rain in vicinity"|"rain in vicinity, rain"|"rain, drizzle and rain, mist"|"rain shower, mist, light rain"|\
+        "rain in vicinity"|"rain in vicinity, rain"|"rain, drizzle and rain"|"rain, drizzle and rain, mist"|"rain shower, mist, light rain"|\
         "heavy rain, mist, rain shower"|\
         "light rain, drizzle and rain"|"light rain, drizzle, mist"|"light rain, fog"|\
         "light rain, haze"|"light rain, heavy rain"|"light rain, patches of fog"|\
-        "light rain, rain, mist"|"rain, heavy rain shower")
+        "light rain, rain, mist"|"rain, heavy rain shower"|"rain, rain shower"|"smoke, rain")
             echo "#3a86ff" ;;
         "moderate rain"|"moderate rain at times"|"moderate or heavy rain shower")
             echo "#2d6a8f" ;;
@@ -158,7 +159,7 @@ get_bg_color() {
         "light rain and small hail/snow pallets shower")
             echo "#7a9eb5" ;;
         # Snow & sleet
-        "light sleet"|"light sleet showers"|"light freezing rain"|"light freezing rain, mist"|\
+        "light sleet"|"light sleet showers"|"patchy sleet nearby"|"light freezing rain"|"light freezing rain, mist"|\
         "light snow"|"light snow shower"|"light snow showers"|"light snow, mist"|\
         "light snow, low drifting snow"|"light snow shower, low drifting snow"|\
         "light snow, freezing fog"|\
@@ -180,6 +181,7 @@ get_bg_color() {
             echo "#b4d4e0" ;;
         # Thunderstorms — lighter variants first, full storm last
         "light rain with thunderstorm"|\
+        "heavy rain shower, light rain with thunderstorm"|\
         "light rain shower, thunderstorm"|\
         "light rain, rain with thunderstorm"|\
         "moderate or heavy rain in area with thunder"|\
@@ -257,6 +259,7 @@ get_bg_color() {
         "shower in vicinity, rain with thunderstorm"|\
         "smoke, rain and dust storm with thunderstorm"|\
         "thunderstorm, blowing widespread dust, rain with thunderstorm"|\
+        "thunderstorm in vicinity, blowing widespread dust, rain with thunderstorm"|\
         "drizzle, rain with thunderstorm"|\
         "heavy rain shower, rain with thunderstorm, rain shower"|\
         "heavy rain with thunderstorm, rain with thunderstorm, rain shower"|\
