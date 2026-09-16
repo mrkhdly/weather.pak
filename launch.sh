@@ -104,7 +104,7 @@ get_bg_color() {
         "smog"|"smoky haze"|"severe smog")
             echo "#7a7a6e" ;;
         # Dust & sand
-        "blowing dust"|"dust haze"|"dust storm"|"low drifting sand"|"sandstorm"|"severe sandstorm"|"widespread dust"|"sand"|\
+        "blowing dust"|"dust"|"dust haze"|"dust storm"|"low drifting sand"|"sandstorm"|"severe sandstorm"|"widespread dust"|"sand"|\
         "blowing widespread dust"|"blowing sand"|"sand, widespread dust"|"well-developed dust/sand whirls")
             echo "#c4a35a" ;;
         # Drizzle
@@ -164,7 +164,7 @@ get_bg_color() {
         "light snow, low drifting snow"|"light snow shower, low drifting snow"|\
         "light snow, freezing fog"|\
         "ice crystals"|"ice pellets"|"light snow shower, parftial fog"|"light snow, parftial fog"|"patchy light snow"|\
-        "light snow grains"|\
+        "light snow grains"|"patchy snow nearby"|\
         "moderate or heavy sleet")
             echo "#9eb5ba" ;;
         "moderate snow"|"snow"|"snow, mist"|"low drifting snow"|\
@@ -176,7 +176,7 @@ get_bg_color() {
         "heavy snow"|"heavy snow showers"|"snow, blowing snow"|\
         "light snow, blowing snow"|"snow shower, blowing snow"|\
         "light snow shower, heavy snow shower"|\
-        "moderate or heavy snow showers"|\
+        "moderate or heavy snow showers"|"patchy heavy snow"|\
         "heavy snow and small hail/snow pallets shower")
             echo "#b4d4e0" ;;
         # Thunderstorms — lighter variants first, full storm last
