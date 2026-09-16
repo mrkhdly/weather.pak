@@ -61,4 +61,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: dist/weather.pak.zip
-          generate_release_notes: true
+          # Do NOT set generate_release_notes: the body is written by hand
+          # (gh release create/notes) in the established tone, already ending
+          # with its own **Full Changelog** link. Auto-generated notes would
+          # append a second **Full Changelog** line (seen on v1.2.3).
