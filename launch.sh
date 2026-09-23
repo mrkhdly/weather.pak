@@ -199,6 +199,7 @@ get_bg_color() {
         "light rain, light rain with thunderstorm, mist"|\
         "light rain shower, light rain with thunderstorm"|\
         "moderate or heavy rain with thunder"|\
+        "moderate or heavy snow in area with thunder"|\
         "rain and hail with thunderstorm"|\
         "thunderstorm in vicinity, light rain and hail with thunderstorm")
             echo "#6a3d8f" ;;
