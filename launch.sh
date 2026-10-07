@@ -165,7 +165,7 @@ get_bg_color() {
         "light snow, freezing fog"|\
         "ice crystals"|"ice pellets"|"light snow shower, parftial fog"|"light snow, parftial fog"|"patchy light snow"|\
         "light snow grains"|"patchy snow nearby"|\
-        "moderate or heavy sleet")
+        "moderate or heavy sleet"|"heavy freezing drizzle")
             echo "#9eb5ba" ;;
         "moderate snow"|"snow"|"snow, mist"|"low drifting snow"|\
         "snow shower")
